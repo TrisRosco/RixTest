@@ -12,7 +12,14 @@ Instructions: -Clone Repo
 -npm i
 -npm start
 
-Components:
-SearchBar
-NewUserInput
-UserDisplay
+/src
+  /components
+    /ContactForm.js
+    /ContactList.js
+    /SearchBar.js
+  /pages
+    /Home.js
+    /AddEditContact.js
+  /services
+    /contactService.js
+  /App.js
