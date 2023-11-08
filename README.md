@@ -14,12 +14,9 @@ Instructions: -Clone Repo
 
 /src
   /components
-    /ContactForm.js
-    /ContactList.js
-    /SearchBar.js
-  /pages
-    /Home.js
-    /AddEditContact.js
+    /ContactForm
+    /ContactList
+    /SearchBar
   /services
-    /contactService.js
+    /contactService
   /App.js
