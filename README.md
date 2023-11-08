@@ -17,6 +17,5 @@ Instructions: -Clone Repo
     /ContactForm
     /ContactList
     /SearchBar
-  /services
-    /contactService
   /App.js
+  /backendServ.js
