@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 
 const ContactForm = ({ onSubmit, initialData = {} }) => {
-  const [contact, setContact] = useState("");
+  // onSubmit is passed in as a prop from App.js
+  // Initialize contact as an object with properties for name, email, and phone.
+  const [contact, setContact] = useState({
+    name: initialData.name || "",
+    email: initialData.email || "",
+    phone: initialData.phone || "",
+  });
 
   const handleChange = (e) => {
+    // Update the contact state with the new value for the changed field.
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
