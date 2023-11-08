@@ -11,3 +11,8 @@ Instructions: -Clone Repo
 -cd cms
 -npm i
 -npm start
+
+Components:
+SearchBar
+NewUserInput
+UserDisplay
