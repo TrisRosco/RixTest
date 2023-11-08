@@ -1,2 +1,7 @@
 # RixTest
-Tech Test for Rix
+CMS (Contact Management System)
+
+Tech stack:
+React
+MUI
+Supabase 
