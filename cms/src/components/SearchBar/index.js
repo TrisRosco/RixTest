@@ -1,9 +1,16 @@
 import React from 'react';
+import { TextField } from '@mui/material';
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   return (
-    <div>
-    </div>
+    <TextField
+      type="text"
+      onChange={(e) => onSearch(e.target.value)}
+      label="Search contacts..."
+      variant="outlined"
+      fullWidth
+      margin="normal"
+    />
   );
 };
 
