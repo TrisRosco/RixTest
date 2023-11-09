@@ -8,9 +8,9 @@ import {
   TextField,
 } from "@mui/material";
 
-const ContactEdit = (isOpen, handleClose) => {
+const ContactEdit = (isOpen) => {
   return (
-    <Dialog open={isOpen} onClose={handleClose}>
+    <Dialog open={isOpen}>
       <DialogTitle>Edit Contact</DialogTitle>
       <DialogContent>
         <TextField

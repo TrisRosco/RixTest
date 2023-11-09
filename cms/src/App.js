@@ -59,7 +59,7 @@ function App() {
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
       <SearchBar onSearch={handleSearch} />
-      <ContactEdit isOpen={openState} handleClose={() => setOpenState(false)} onClick={() => setOpenState(false)} />
+      <ContactEdit isOpen={openState} />
       <ContactList
         contacts={filteredContacts}
         onDelete={(id) => deleteContact(id)}
