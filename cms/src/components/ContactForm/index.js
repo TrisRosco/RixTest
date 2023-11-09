@@ -43,7 +43,20 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
         onChange={handleChange}
         required
       />
-
+      <TextField
+        label="Address"
+        name="address"
+        value={contact.address}
+        onChange={handleChange}
+        required
+      />
+      <TextField
+        label="Postcode"
+        name="postcode"
+        value={contact.postcode}
+        onChange={handleChange}
+        required
+      />
 
       <Button variant="contained" color="primary" type="submit">
         Save Contact

@@ -34,6 +34,8 @@ const ContactList = ({ contacts, onDelete }) => {
                 {"Phone: " + contact.phone}
                 <br />
                 {"Address: " + contact.address}
+                <br />
+                {"Postcode: " + contact.postcode}
               </>
             }
           />
