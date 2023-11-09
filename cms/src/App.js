@@ -38,7 +38,10 @@ function App() {
       // Otherwise, filter the contacts
       const filtered = contacts.filter((contact) =>
         contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchTerm.toLowerCase()) 
+        contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.postcode.toLowerCase().includes(searchTerm.toLowerCase())
         // Add city
         // contact.city.toLowerCase().includes(searchTerm.toLowerCase())
       );
