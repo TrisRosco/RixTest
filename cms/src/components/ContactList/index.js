@@ -18,7 +18,17 @@ const ContactList = ({ contacts, onDelete }) => {
             </IconButton>
           }
         >
-          <ListItemText primary={contact.name} secondary={{contact.email} ' - ' {contact.phone}} />
+          <ListItemText
+            primary={contact.name}
+            secondary={
+              "Email: " +
+              contact.email +
+              " Phone: " +
+              contact.phone +
+              " Address: " +
+              contact.address
+            }
+          />
         </ListItem>
       ))}
     </List>

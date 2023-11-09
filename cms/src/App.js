@@ -22,11 +22,15 @@ function App() {
             id: 1,
             name: "Test Name1",
             email: "Email@email.com",
+            phone: "321 321 3210",
+            address: "4321 Test Address",
           },
           {
             id: 2,
             name: "Test Name2",
-            email: "Email@email.com",
+            email: "Email2@email2.com",
+            phone: "123-456-7890",
+            address: "1234 Test Address",
           },
         ]}
         onDelete={(id) => console.log(id)}
