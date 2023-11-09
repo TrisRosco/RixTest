@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 
-const ContactEdit = ({ isOpen, onClose }) => {
+const ContactEdit = ({ isOpen, onClose, onSave }) => {
   return (
     <Dialog open={isOpen}>
       <DialogTitle>Edit Contact</DialogTitle>
@@ -56,7 +56,7 @@ const ContactEdit = ({ isOpen, onClose }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button>Save</Button>
+        <Button onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
   );

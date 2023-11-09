@@ -47,6 +47,11 @@ function App() {
     setOpenState(false);
   };
 
+  const handleSave = () => {
+    // PLACEHODER, will sort later
+    console.log("Contact saved");
+  };
+
   useEffect(() => {
     // necessary in order to display all contacts when search bar is empty
     handleSearch("");
@@ -63,7 +68,11 @@ function App() {
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
       <SearchBar onSearch={handleSearch} />
-      <ContactEdit isOpen={openState} onClose={handleClose} />
+      <ContactEdit
+        isOpen={openState}
+        onClose={handleClose}
+        onSave={handleSave}
+      />
       <ContactList
         contacts={filteredContacts}
         onDelete={(id) => deleteContact(id)}
