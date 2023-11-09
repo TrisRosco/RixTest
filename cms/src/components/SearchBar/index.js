@@ -23,9 +23,10 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel id="search-field-label">Search By</InputLabel>
       <Select
+        fullWidth
         margin="dense"
         labelId="search-field-label"
         value={searchField}
@@ -40,6 +41,7 @@ const SearchBar = ({ onSearch }) => {
       </Select>
 
       <TextField
+        fullWidth
         margin="dense"
         type="text"
         onChange={handleSearchChange}

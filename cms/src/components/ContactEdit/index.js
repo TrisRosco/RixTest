@@ -31,7 +31,10 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           : "Please enter a valid phone number.";
       case "postcode":
         // regex for UK postcodes
-        return /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/.test(value.toUpperCase())
+        // this is sourced from the wikipedia page for UK postcodes account for special cases
+        return /^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}|BFPO ?[0-9]{1,4}|(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}|[A-Z]{2} ?[0-9]{2}|GE ?CX|GIR ?0A{2}|SAN ?TA1)$/.test(
+          value.toUpperCase()
+        )
           ? ""
           : "Please enter a valid UK postcode.";
       default:

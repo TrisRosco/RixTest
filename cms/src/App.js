@@ -4,7 +4,7 @@ import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import ContactEdit from "./components/ContactEdit";
-import { Paper } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import { getContacts, addContact, deleteContact } from "./Models/queries";
 
 function App() {
@@ -37,7 +37,10 @@ function App() {
     } else {
       // Otherwise, filter the contacts
       const filtered = contacts.filter((contact) =>
-        contact[searchField].toLowerCase().includes(searchTerm.toLowerCase())
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.email.toLowerCase().includes(searchTerm.toLowerCase()) 
+        // Add city
+        // contact.city.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredContacts(filtered);
     }
@@ -63,7 +66,8 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Container maxWidth="sm" className="App">
+    <Paper sx={{padding: 2, marginTop: 4}} elevation={3}>
       {/* <Paper elevation={3} className="container">
         <ContactForm onSubmit={handleSubmit} />
       </Paper> */}
@@ -78,7 +82,8 @@ function App() {
         onDelete={(id) => deleteContact(id)}
         onEdit={handleEdit}
       />
-    </div>
+      </Paper>
+    </Container>
   );
 }
 
