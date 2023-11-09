@@ -43,6 +43,10 @@ function App() {
     }
   };
 
+  const handleClose = () => {
+    setOpenState(false);
+  };
+
   useEffect(() => {
     // necessary in order to display all contacts when search bar is empty
     handleSearch("");
@@ -59,7 +63,7 @@ function App() {
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
       <SearchBar onSearch={handleSearch} />
-      <ContactEdit isOpen={openState} />
+      <ContactEdit isOpen={openState} onClose={handleClose} />
       <ContactList
         contacts={filteredContacts}
         onDelete={(id) => deleteContact(id)}
