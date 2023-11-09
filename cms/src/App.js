@@ -28,14 +28,14 @@ function App() {
     setContacts((prevContacts) => [...prevContacts, contact]); // update contacts usestate with new contact added
   };
 
-  const handleSearch = (searchTerm) => {
+  const handleSearch = (searchTerm, searchField) => {
     if (searchTerm.trim() === "") {
       // If the search term is empty, set filtered contacts to all contacts usestate
       setFilteredContacts(contacts);
     } else {
       // Otherwise, filter the contacts
       const filtered = contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+        contact[searchField].toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredContacts(filtered);
     }
