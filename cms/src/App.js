@@ -28,13 +28,24 @@ function App() {
   };
 
   const handleSearch = (searchTerm) => {
-    setFilteredContacts(
-      contacts.filter((contact) =>
+    if (searchTerm.trim() === "") {
+      // If the search term is empty, set filtered contacts to all contacts usestate
+      setFilteredContacts(contacts);
+    } else {
+      // Otherwise, filter the contacts
+      const filtered = contacts.filter((contact) =>
         contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
+      );
+      setFilteredContacts(filtered);
+    }
   };
 
+  useEffect(() => {
+    // When the contacts usestate changes, reset the search
+    // Necessary to display all contacts after adding a new one
+    handleSearch("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contacts]);
 
   return (
     <div className="App">
@@ -42,7 +53,11 @@ function App() {
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
       <SearchBar onSearch={handleSearch} />
-      <ContactList contacts={filteredContacts} onDelete={(id) => deleteContact(id)} onEdit={(id) => console.log(id)} />
+      <ContactList
+        contacts={filteredContacts}
+        onDelete={(id) => deleteContact(id)}
+        onEdit={(id) => console.log(id)}
+      />
     </div>
   );
 }
