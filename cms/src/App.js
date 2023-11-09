@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
+import ContactEdit from "./components/ContactEdit";
 import { Paper } from "@mui/material";
 import { getContacts, addContact, deleteContact } from "./Models/queries";
 
