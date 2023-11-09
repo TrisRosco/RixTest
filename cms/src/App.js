@@ -30,7 +30,7 @@ function App() {
     setContacts((prevContacts) => [...prevContacts, contact]); // update contacts usestate with new contact added
   };
 
-  const handleSearch = (searchTerm, searchField) => {
+  const handleSearch = (searchTerm) => {
     if (searchTerm.trim() === "") {
       // If the search term is empty, set filtered contacts to all contacts usestate
       setFilteredContacts(contacts);
