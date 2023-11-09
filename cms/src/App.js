@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import ContactForm from './components/ContactForm';
 import SearchBar from './components/SearchBar';
+import { Paper } from '@mui/material';
 
 function App() {
 
@@ -12,8 +13,11 @@ function App() {
 
   return (
     <div className="App">
-      <ContactForm onSubmit={handleSubmit} />
-      <SearchBar onSearch={(value) => console.log(value)} />
+      <Paper elevation={3} className="container">
+        <ContactForm onSubmit={handleSubmit} />
+        </Paper>
+        <SearchBar onSearch={(value) => console.log(value)} />
+
     </div>
   );
 }
