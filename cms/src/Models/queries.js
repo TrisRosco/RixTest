@@ -14,17 +14,15 @@ export const getContacts = async () => {
   }
 };
 
-export const addEditContact = async (contact) => {
+export const addContact = async (contact) => {
   try {
-    const { data, error } = contact.id
-      ? await supabase.from(table).update(contact).match({ id: contact.id })
-      : await supabase.from(table).insert([contact]);
+    const { data, error } = await supabase.from(table).insert([contact]);
     if (error) throw new Error(error.message);
-    console.log("Contact added/edited:", data);
+    console.log("Contact added:", data);
     return data;
   } catch (error) {
-    console.error("Error adding/editing contact:", error);
-    throw error; 
+    console.error("Error adding contact:", error);
+    throw error;
   }
 };
 

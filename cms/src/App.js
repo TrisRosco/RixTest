@@ -1,13 +1,12 @@
 import "./App.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import { Paper } from "@mui/material";
-import { getContacts, addEditContact, deleteContact } from "./Models/queries";
+import { getContacts, addContact, deleteContact } from "./Models/queries";
 
 function App() {
-
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -16,16 +15,15 @@ function App() {
         const data = await getContacts();
         setContacts(data);
       } catch (error) {
-        console.error('Failed to fetch contacts:', error);
+        console.error("Failed to fetch contacts:", error);
       }
     };
 
     fetchContacts();
-  }, []); 
-
+  }, []);
 
   const handleSubmit = (contact) => {
-    addEditContact(contact)
+    addContact(contact);
   };
 
   return (
@@ -34,10 +32,7 @@ function App() {
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
       <SearchBar onSearch={(value) => console.log(value)} />
-      <ContactList
-        contacts={contacts}
-        onDelete={(id) => deleteContact(id)}
-      />
+      <ContactList contacts={contacts} onDelete={(id) => deleteContact(id)} />
     </div>
   );
 }
