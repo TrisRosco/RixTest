@@ -31,6 +31,12 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
     }
   };
 
+  const formatPostcode = (value) => {
+    // format postcode to uppercase and add space before last 3 characters
+    const formatted = value.toUpperCase();
+    return formatted.slice(0, -3) + " " + formatted.slice(-3);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const error = validateInput(name, value); // validate input
@@ -102,6 +108,11 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
         helperText={errors.postcode}
         required
         inputProps={{ maxLength: 7 }}
+        onBlur={(e) => {
+          // Format the postcode 
+          const formattedPostcode = formatPostcode(e.target.value);
+          setContact({ ...contact, postcode: formattedPostcode });
+        }}
       />
 
       <Button
