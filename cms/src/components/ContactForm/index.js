@@ -14,8 +14,10 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
   const validateInput = (name, value) => {
     switch (name) {
       case "name":
+        // this is never triggered because of maxLength
         return value.length <= 50 ? "" : "Name cannot exceed 50 characters.";
       case "email":
+
         return /\S+@\S+\.\S+/.test(value) ? "" : "Please enter a valid email.";
       case "phone":
         return /^\+?(\d{1,3})?\s?-?\d+$/.test(value)
@@ -32,9 +34,12 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
   };
 
   const formatPostcode = (value) => {
-    // format postcode to uppercase and add space before last 3 characters
+    // format postcode to uppercase and add space before last 3 characters if not already there
     const formatted = value.toUpperCase();
-    return formatted.slice(0, -3) + " " + formatted.slice(-3);
+    if (formatted.length > 3 && formatted[formatted.length - 4] !== " ") {
+      return formatted.slice(0, -3) + " " + formatted.slice(-3);
+    }
+    return formatted;
   };
 
   const handleChange = (e) => {
