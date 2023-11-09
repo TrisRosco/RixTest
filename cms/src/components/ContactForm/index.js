@@ -17,7 +17,6 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
         // this is never triggered because of maxLength
         return value.length <= 50 ? "" : "Name cannot exceed 50 characters.";
       case "email":
-
         return /\S+@\S+\.\S+/.test(value) ? "" : "Please enter a valid email.";
       case "phone":
         return /^\+?(\d{1,3})?\s?-?\d+$/.test(value)
@@ -102,7 +101,7 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
         name="address"
         value={contact.address}
         onChange={handleChange}
-        inputProps={{ maxLength: 50 }}
+        inputProps={{ maxLength: 255 }}
       />
       <TextField
         label="Postcode"
@@ -114,7 +113,7 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
         required
         inputProps={{ maxLength: 7 }}
         onBlur={(e) => {
-          // Format the postcode 
+          // Format the postcode
           const formattedPostcode = formatPostcode(e.target.value);
           setContact({ ...contact, postcode: formattedPostcode });
         }}
