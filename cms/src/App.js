@@ -32,7 +32,7 @@ function App() {
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
       <SearchBar onSearch={(value) => console.log(value)} />
-      <ContactList contacts={contacts} onDelete={(id) => deleteContact(id)} />
+      <ContactList contacts={contacts} onDelete={(id) => deleteContact(id)} onEdit={(id) => console.log(id)} />
     </div>
   );
 }

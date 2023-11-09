@@ -7,22 +7,34 @@ import {
   Tooltip,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit"; // Import the edit icon
 
-const ContactList = ({ contacts, onDelete }) => {
+const ContactList = ({ contacts, onDelete, onEdit }) => {
   return (
     <List>
       {contacts.map((contact) => (
         <ListItem
           key={contact.id}
           secondaryAction={
-            <Tooltip title="Remove Contact">
-              <IconButton
-                aria-label="delete"
-                onClick={() => onDelete(contact.id)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
+            <>
+              <Tooltip title="Edit Contact">
+                <IconButton
+                  aria-label="edit"
+                  onClick={() => onEdit(contact.id)}
+                >
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Remove Contact">
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={() => onDelete(contact.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </>
           }
         >
           <ListItemText
@@ -46,3 +58,4 @@ const ContactList = ({ contacts, onDelete }) => {
 };
 
 export default ContactList;
+
