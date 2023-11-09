@@ -25,6 +25,7 @@ function App() {
 
   const handleSubmit = (contact) => {
     addContact(contact);
+    setContacts((prevContacts) => [...prevContacts, contact]); // update contacts usestate with new contact added
   };
 
   const handleSearch = (searchTerm) => {
@@ -41,8 +42,7 @@ function App() {
   };
 
   useEffect(() => {
-    // When the contacts usestate changes, reset the search
-    // Necessary to display all contacts after adding a new one
+    // necessary in order to display all contacts when search bar is empty
     handleSearch("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contacts]);
