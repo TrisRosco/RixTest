@@ -11,10 +11,6 @@ const SearchBar = ({ onSearch }) => {
   // usestate to track the selected field
   const [searchField, setSearchField] = useState("name");
 
-  // Handler for the select field change
-  const handleFieldChange = (event) => {
-    setSearchField(event.target.value);
-  };
 
   // Handler for the search field change
   const handleSearchChange = (event) => {
@@ -24,21 +20,6 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="search-field-label">Search By</InputLabel>
-      <Select
-        fullWidth
-        margin="dense"
-        labelId="search-field-label"
-        value={searchField}
-        label="Search By"
-        onChange={handleFieldChange}
-      >
-        <MenuItem value="name">Name</MenuItem>
-        <MenuItem value="email">Email</MenuItem>
-        <MenuItem value="address">Address</MenuItem>
-        <MenuItem value="postcode">Postcode</MenuItem>
-        <MenuItem value="phone">Number</MenuItem>
-      </Select>
 
       <TextField
         fullWidth
