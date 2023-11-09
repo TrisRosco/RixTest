@@ -26,6 +26,18 @@ export const addContact = async (contact) => {
   }
 };
 
+export const updateContact = async (id, contact) => {
+  try {
+    const { data, error } = await supabase.from(table).update(contact).match({ id });
+    if (error) throw new Error(error.message);
+    console.log("Contact updated:", data);
+    return data;
+  } catch (error) {
+    console.error("Error updating contact:", error);
+    throw error;
+  }
+};
+
 export const deleteContact = async (id) => {
   try {
     const { data, error } = await supabase.from(table).delete().match({ id });
