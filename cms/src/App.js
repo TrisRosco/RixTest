@@ -4,7 +4,7 @@ import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import { Paper } from "@mui/material";
-import { getContacts } from "./Models/queries";
+import { getContacts, addEditContact } from "./Models/queries";
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
 
 
   const handleSubmit = (contact) => {
-    console.log(contact);
+    addEditContact(contact)
   };
 
   return (
