@@ -8,6 +8,7 @@ import { getContacts, addContact, deleteContact } from "./Models/queries";
 
 function App() {
   const [contacts, setContacts] = useState([]);
+  const [filteredContacts, setFilteredContacts] = useState([]);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -26,13 +27,22 @@ function App() {
     addContact(contact);
   };
 
+  const handleSearch = (searchTerm) => {
+    setFilteredContacts(
+      contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  };
+
+
   return (
     <div className="App">
       <Paper elevation={3} className="container">
         <ContactForm onSubmit={handleSubmit} />
       </Paper>
-      <SearchBar onSearch={(value) => console.log(value)} />
-      <ContactList contacts={contacts} onDelete={(id) => deleteContact(id)} onEdit={(id) => console.log(id)} />
+      <SearchBar onSearch={handleSearch} />
+      <ContactList contacts={filteredContacts} onDelete={(id) => deleteContact(id)} onEdit={(id) => console.log(id)} />
     </div>
   );
 }
