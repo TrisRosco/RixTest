@@ -15,6 +15,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
     phone: initialData.phone || "",
     address: initialData.address || "",
     postcode: initialData.postcode || "",
+    city: initialData.city || "",
   });
   const [errors, setErrors] = useState({}); // tracks errors for each field
 
@@ -97,6 +98,15 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           helperText={errors.phone}
           required
           inputProps={{ maxLength: 15 }}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          label="City"
+          name="city"
+          value={contact.city}
+          onChange={handleChange}
+          inputProps={{ maxLength: 50 }}
         />
         <TextField
           margin="dense"

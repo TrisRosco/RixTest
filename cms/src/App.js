@@ -41,9 +41,8 @@ function App() {
         contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         contact.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
         contact.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.postcode.toLowerCase().includes(searchTerm.toLowerCase())
-        // Add city
-        // contact.city.toLowerCase().includes(searchTerm.toLowerCase())
+        contact.postcode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.city.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredContacts(filtered);
     }

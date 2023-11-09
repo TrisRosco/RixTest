@@ -45,7 +45,7 @@ const ContactList = ({ contacts, onDelete, onEdit }) => {
                 <br />
                 {"Phone: " + contact.phone}
                 <br />
-                {"Address: " + contact.address}
+                {"Address: " + contact.address + ", " + contact.city}
                 <br />
                 {"Postcode: " + contact.postcode}
               </>
