@@ -1,5 +1,11 @@
 import React from "react";
-import { List, ListItem, ListItemText, IconButton } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const ContactList = ({ contacts, onDelete }) => {
@@ -9,24 +15,26 @@ const ContactList = ({ contacts, onDelete }) => {
         <ListItem
           key={contact.id}
           secondaryAction={
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              onClick={() => onDelete(contact.id)}
-            >
-              <DeleteIcon />
-            </IconButton>
+            <Tooltip title="Remove Contact">
+              <IconButton
+                aria-label="delete"
+                onClick={() => onDelete(contact.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
           }
         >
           <ListItemText
             primary={contact.name}
             secondary={
-              "Email: " +
-              contact.email +
-              " Phone: " +
-              contact.phone +
-              " Address: " +
-              contact.address
+              <>
+                {"Email: " + contact.email}
+                <br />
+                {"Phone: " + contact.phone}
+                <br />
+                {"Address: " + contact.address}
+              </>
             }
           />
         </ListItem>
