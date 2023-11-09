@@ -64,9 +64,9 @@ function App() {
 
   return (
     <div className="App">
-      <Paper elevation={3} className="container">
+      {/* <Paper elevation={3} className="container">
         <ContactForm onSubmit={handleSubmit} />
-      </Paper>
+      </Paper> */}
       <SearchBar onSearch={handleSearch} />
       <ContactEdit
         isOpen={openState}

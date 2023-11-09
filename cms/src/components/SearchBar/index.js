@@ -23,28 +23,30 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-      <FormControl>
-        <InputLabel id="search-field-label">Search By</InputLabel>
-        <Select
-          labelId="search-field-label"
-          value={searchField}
-          label="Search By"
-          onChange={handleFieldChange}
-        >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">Email</MenuItem>
-          <MenuItem value="address">Address</MenuItem>
-          <MenuItem value="postcode">Postcode</MenuItem>
-          <MenuItem value="phone">Number</MenuItem>
-        </Select>
+    <FormControl>
+      <InputLabel id="search-field-label">Search By</InputLabel>
+      <Select
+        margin="dense"
+        labelId="search-field-label"
+        value={searchField}
+        label="Search By"
+        onChange={handleFieldChange}
+      >
+        <MenuItem value="name">Name</MenuItem>
+        <MenuItem value="email">Email</MenuItem>
+        <MenuItem value="address">Address</MenuItem>
+        <MenuItem value="postcode">Postcode</MenuItem>
+        <MenuItem value="phone">Number</MenuItem>
+      </Select>
 
-        <TextField
-          type="text"
-          onChange={handleSearchChange}
-          label="Search contacts..."
-          variant="outlined"
-        />
-      </FormControl>
+      <TextField
+        margin="dense"
+        type="text"
+        onChange={handleSearchChange}
+        label="Search contacts..."
+        variant="outlined"
+      />
+    </FormControl>
   );
 };
 
