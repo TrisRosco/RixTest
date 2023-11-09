@@ -8,8 +8,9 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
     name: initialData.name || "",
     email: initialData.email || "",
     phone: initialData.phone || "",
+    address: initialData.address || "",
+    postcode: initialData.postcode || "",
   });
-
   const handleChange = (e) => {
     // Update the contact state with the new value for the changed field.
     setContact({ ...contact, [e.target.name]: e.target.value });
