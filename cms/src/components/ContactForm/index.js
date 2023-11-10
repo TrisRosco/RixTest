@@ -21,17 +21,27 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
   const validateInput = (name, value) => {
     switch (name) {
       case "name":
-        // this is never triggered because of maxLength
-        return value.length <= 50 ? "" : "Name cannot exceed 50 characters.";
+        return value.trim() !== "" // check if name is empty
+          ? ""
+          : "Please enter a name.";
       case "email":
         return /\S+@\S+\.\S+/.test(value) ? "" : "Please enter a valid email.";
       case "phone":
         return /^\+?(\d{1,3})?\s?-?\d+$/.test(value)
           ? ""
           : "Please enter a valid phone number.";
+      case "address":
+        return value.trim() !== "" // check if address is empty
+          ? ""
+          : "Please enter an address.";
+      case "city":
+        return value.trim() !== "" // check if city is empty
+          ? ""
+          : "Please enter a city.";
       case "postcode":
-        // regex for UK postcodes
-        return /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/.test(value.toUpperCase())
+        return /^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}|BFPO ?[0-9]{1,4}|(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}|[A-Z]{2} ?[0-9]{2}|GE ?CX|GIR ?0A{2}|SAN ?TA1)$/.test(
+          value.toUpperCase()
+        )
           ? ""
           : "Please enter a valid UK postcode.";
       default:
@@ -117,6 +127,9 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
           name="city"
           value={contact.city}
           onChange={handleChange}
+          error={!!errors.city}
+          helperText={errors.city}
+          required
           inputProps={{ maxLength: 50 }}
         />
         <TextField
@@ -126,6 +139,9 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
           name="address"
           value={contact.address}
           onChange={handleChange}
+          error={!!errors.address}
+          helperText={errors.address}
+          required
           inputProps={{ maxLength: 255 }}
         />
         <TextField

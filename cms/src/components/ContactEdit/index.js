@@ -119,6 +119,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           name="city"
           value={contact.city}
           onChange={handleChange}
+          required
           inputProps={{ maxLength: 50 }}
         />
         <TextField
@@ -128,6 +129,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           name="address"
           value={contact.address}
           onChange={handleChange}
+          required
           inputProps={{ maxLength: 255 }}
         />
         <TextField
