@@ -81,6 +81,7 @@ function App() {
         isOpen={isEditOpen}
         onClose={handleClose}
         onSave={handleSave}
+        initialData={selectedContact} // pass the selected contact to the edit form
       />
       <ContactList
         contacts={filteredContacts}

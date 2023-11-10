@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -18,6 +18,18 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
     city: initialData.city || "",
   });
   const [errors, setErrors] = useState({}); // tracks errors for each field
+
+  useEffect(() => {
+    setContact({
+    name: initialData.name || "",
+    email: initialData.email || "",
+    phone: initialData.phone || "",
+    address: initialData.address || "",
+    postcode: initialData.postcode || "",
+    city: initialData.city || "",
+    });
+  }, [initialData]);
+
 
   const validateInput = (name, value) => {
     switch (name) {
