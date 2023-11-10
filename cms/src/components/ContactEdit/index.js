@@ -151,8 +151,24 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={() => onSave(contact)}>Save</Button>
+        <Button
+          onClick={onClose}
+          variant="outlined"
+          color="primary"
+          type="submit"
+          style={{ marginTop: "16px" }}
+        >
+          Cancel
+        </Button>
+        <Button
+          onClick={() => onSave(contact)}
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{ marginTop: "16px" }}
+        >
+          Update Contact
+        </Button>
       </DialogActions>
     </Dialog>
   );
