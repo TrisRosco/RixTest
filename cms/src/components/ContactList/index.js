@@ -20,7 +20,7 @@ const ContactList = ({ contacts, onDelete, onEdit }) => {
               <Tooltip title="Edit Contact">
                 <IconButton
                   aria-label="edit"
-                  onClick={() => onEdit(contact.id)}
+                  onClick={() => onEdit(contact)}
                 >
                   <EditIcon />
                 </IconButton>

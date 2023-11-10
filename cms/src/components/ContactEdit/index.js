@@ -31,9 +31,11 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
         city: initialData.city || "",
       });
 
-      console.log("Contact state: ", contact); // Debug after setting state
+
     }
   }, [initialData]);
+
+  console.log("Contact state: ", contact); // Debug after setting state
 
   const validateInput = (name, value) => {
     switch (name) {
