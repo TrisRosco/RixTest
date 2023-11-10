@@ -140,7 +140,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           error={!!errors.postcode}
           helperText={errors.postcode}
           required
-          inputProps={{ maxLength: 7 }}
+          inputProps={{ maxLength: 8 }}
           onBlur={(e) => {
             // Format the postcode
             const formattedPostcode = formatPostcode(e.target.value);
