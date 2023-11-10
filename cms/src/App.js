@@ -4,7 +4,7 @@ import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import ContactEdit from "./components/ContactEdit";
-import { Container, Paper } from "@mui/material";
+import { Container, Paper, Button } from "@mui/material";
 import { getContacts, addContact, deleteContact } from "./Models/queries";
 
 function App() {
@@ -66,7 +66,6 @@ function App() {
   }, [contacts]);
 
   const handleEditClick = (contact) => {
-    console.log("Editing contact: ", contact); // Debug
     setSelectedContact(contact);
     setIsEditOpen(true);
   };
@@ -74,10 +73,11 @@ function App() {
   return (
     <Container maxWidth="sm" className="App">
     <Paper sx={{padding: 2, marginTop: 4}} elevation={3}>
-      {/* <Paper elevation={3} className="container">
+      <Paper elevation={3} className="container">
         <ContactForm onSubmit={handleSubmit} />
-      </Paper> */}
+      </Paper>
       <SearchBar onSearch={handleSearch} />
+      <Button variant="contained" >Add Contact</Button>
       <ContactEdit
         isOpen={isEditOpen}
         onClose={handleClose}

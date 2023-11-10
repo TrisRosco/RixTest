@@ -20,7 +20,6 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
   const [errors, setErrors] = useState({}); // tracks errors for each field
 
   useEffect(() => {
-    console.log("Initial data received: ", initialData); // Debug
     if (initialData) {
       setContact({
         name: initialData.name || "",
@@ -30,12 +29,8 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
         postcode: initialData.postcode || "",
         city: initialData.city || "",
       });
-
-
     }
   }, [initialData]);
-
-  console.log("Contact state: ", contact); // Debug after setting state
 
   const validateInput = (name, value) => {
     switch (name) {
