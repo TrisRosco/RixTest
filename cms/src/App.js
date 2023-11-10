@@ -75,32 +75,36 @@ function App() {
     setSelectedContact(null);
   };
 
-  const handleSave = (updatedContactDetails) => {
+  const handleSave = async (updatedContactDetails) => {
     setIsLoading(true); // Start loading
     if (selectedContact && selectedContact.id) {
-      updateContact(selectedContact.id, updatedContactDetails)
-        .then((updatedContact) => {
-          // Update the contacts state with the new details
-          setContacts(
-            contacts.map((contact) =>
-              contact.id === updatedContact.id ? updatedContact : contact
-            )
-          );
-          // Close the edit form and reset the selected contact
-          setSnackbarMessage("Contact updated successfully");
-          setSnackbarOpen(true);
-          setIsLoading(false); // Stop loading
-        })
-        .catch((error) => {
-          console.error("Error updating contact:", error);
-          setSnackbarMessage("Error updating contact");
-          setSnackbarOpen(true);
-          setIsLoading(false); // Stop loading
-        });
+      try {
+        // Await the async updateContact call
+        const updatedContact = await updateContact(
+          selectedContact.id,
+          updatedContactDetails
+        );
+        // Update the contacts state with the new details
+        setContacts(
+          contacts.map((contact) =>
+            contact.id === updatedContact.id ? updatedContact : contact
+          )
+        );
+        // Set success message and stop loading
+        setSnackbarMessage("Contact updated successfully");
+        setSnackbarOpen(true);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error updating contact:", error);
+        setSnackbarMessage("Error updating contact");
+        setSnackbarOpen(true);
+        setIsLoading(false); // Stop loading in case of error
+      }
     } else {
       console.error("No contact selected for updating.");
       setSnackbarMessage("No contact selected for updating");
       setSnackbarOpen(true);
+      setIsLoading(false); // Stop loading if no contact is selected
     }
     setIsEditOpen(false);
     setSelectedContact(null);
