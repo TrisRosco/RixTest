@@ -20,6 +20,7 @@ function App() {
   const [isNewOpen, setIsNewOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -75,6 +76,7 @@ function App() {
   };
 
   const handleSave = (updatedContactDetails) => {
+    setIsLoading(true); // Start loading
     if (selectedContact && selectedContact.id) {
       updateContact(selectedContact.id, updatedContactDetails)
         .then((updatedContact) => {
@@ -87,11 +89,13 @@ function App() {
           // Close the edit form and reset the selected contact
           setSnackbarMessage("Contact updated successfully");
           setSnackbarOpen(true);
+          setIsLoading(false); // Stop loading
         })
         .catch((error) => {
           console.error("Error updating contact:", error);
           setSnackbarMessage("Error updating contact");
           setSnackbarOpen(true);
+          setIsLoading(false); // Stop loading
         });
     } else {
       console.error("No contact selected for updating.");
@@ -124,6 +128,7 @@ function App() {
           isOpen={isNewOpen}
           onSubmit={handleSubmit}
           onClose={handleClose}
+          isLoading={isLoading}
         />
 
         <SearchBar onSearch={handleSearch} />
@@ -135,6 +140,7 @@ function App() {
           onClose={handleClose}
           onSave={handleSave}
           initialData={selectedContact} // pass the selected contact to the edit form
+          isLoading={isLoading}
         />
         <ContactList
           contacts={filteredContacts}
