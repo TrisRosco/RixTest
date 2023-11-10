@@ -45,12 +45,22 @@ function App() {
       // Otherwise, filter the contacts
       const filtered = contacts.filter(
         (contact) =>
-          contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.postcode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          contact.city.toLowerCase().includes(searchTerm.toLowerCase())
+          (contact.name?.toLowerCase() || "").includes(
+            searchTerm.toLowerCase()
+          ) ||
+          (contact.email?.toLowerCase() || "").includes(
+            searchTerm.toLowerCase()
+          ) ||
+          (contact.phone?.toLowerCase() || "").includes(
+            searchTerm.toLowerCase()
+          ) ||
+          (contact.address?.toLowerCase() || "").includes(
+            searchTerm.toLowerCase()
+          ) ||
+          (contact.postcode?.toLowerCase() || "").includes(
+            searchTerm.toLowerCase()
+          ) ||
+          (contact.city?.toLowerCase() || "").includes(searchTerm.toLowerCase())
       );
       setFilteredContacts(filtered);
     }
@@ -98,17 +108,21 @@ function App() {
 
   const handleNewClick = () => {
     setIsNewOpen(true);
-  }
-
+  };
 
   return (
     <Container maxWidth="sm" className="App">
       <Paper sx={{ padding: 2, marginTop: 4 }} elevation={3}>
-
-        <ContactForm isOpen={isNewOpen} onSubmit={handleSubmit} onClose={handleClose} />
+        <ContactForm
+          isOpen={isNewOpen}
+          onSubmit={handleSubmit}
+          onClose={handleClose}
+        />
 
         <SearchBar onSearch={handleSearch} />
-        <Button variant="contained" onClick={handleNewClick}>Add Contact</Button>
+        <Button variant="contained" onClick={handleNewClick}>
+          Add Contact
+        </Button>
         <ContactEdit
           isOpen={isEditOpen}
           onClose={handleClose}

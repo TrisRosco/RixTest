@@ -5,6 +5,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogActions,
 } from "@mui/material";
 
 const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
@@ -144,6 +145,8 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
             setContact({ ...contact, postcode: formattedPostcode });
           }}
         />
+      </DialogContent>
+      <DialogActions>
         <Button
           variant="outlined"
           color="primary"
@@ -162,7 +165,7 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
         >
           Save Contact
         </Button>
-      </DialogContent>
+      </DialogActions>
     </Dialog>
   );
 };
