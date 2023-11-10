@@ -10,26 +10,30 @@ import {
 
 const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
   const [contact, setContact] = useState({
-    name: initialData.name || "",
-    email: initialData.email || "",
-    phone: initialData.phone || "",
-    address: initialData.address || "",
-    postcode: initialData.postcode || "",
-    city: initialData.city || "",
+    name: initialData ? initialData.name : "",
+    email: initialData ? initialData.email : "",
+    phone: initialData ? initialData.phone : "",
+    address: initialData ? initialData.address : "",
+    postcode: initialData ? initialData.postcode : "",
+    city: initialData ? initialData.city : "",
   });
   const [errors, setErrors] = useState({}); // tracks errors for each field
 
   useEffect(() => {
-    setContact({
-    name: initialData.name || "",
-    email: initialData.email || "",
-    phone: initialData.phone || "",
-    address: initialData.address || "",
-    postcode: initialData.postcode || "",
-    city: initialData.city || "",
-    });
-  }, [initialData]);
+    console.log("Initial data received: ", initialData); // Debug
+    if (initialData) {
+      setContact({
+        name: initialData.name || "",
+        email: initialData.email || "",
+        phone: initialData.phone || "",
+        address: initialData.address || "",
+        postcode: initialData.postcode || "",
+        city: initialData.city || "",
+      });
 
+      console.log("Contact state: ", contact); // Debug after setting state
+    }
+  }, [initialData]);
 
   const validateInput = (name, value) => {
     switch (name) {

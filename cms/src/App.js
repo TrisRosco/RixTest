@@ -66,6 +66,7 @@ function App() {
   }, [contacts]);
 
   const handleEditClick = (contact) => {
+    console.log("Editing contact: ", contact); // Debug
     setSelectedContact(contact);
     setIsEditOpen(true);
   };
