@@ -70,6 +70,15 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contacts]);
 
+  const handleEditClick = (contact) => {
+    setSelectedContact(contact);
+    setIsEditOpen(true);
+  };
+
+  const handleNewClick = () => {
+    setIsNewOpen(true);
+  };
+
   const handleClose = () => {
     setIsEditOpen(false);
     setIsNewOpen(false);
@@ -102,12 +111,12 @@ function App() {
         // Set success message and stop loading
         setSnackbarMessage("Contact updated successfully");
         setSnackbarOpen(true);
-        setIsLoading(false);
+        setIsLoading(false); // Stop loading on success
       } catch (error) {
         console.error("Error updating contact:", error);
         setSnackbarMessage("Error updating contact");
         setSnackbarOpen(true);
-        setIsLoading(false); // Stop loading in case of error
+        setIsLoading(false); // Stop loading on error
       }
     } else {
       console.error("No contact selected for updating.");
@@ -116,22 +125,12 @@ function App() {
       setIsLoading(false); // Stop loading if no contact is selected
     }
     setIsEditOpen(false);
-    //TODO: This is jank 
+    //TODO: This is jank
     setContacts((prevContacts) =>
       prevContacts.map((contact) =>
         contact.id === selectedContact.id ? updatedContactDetails : contact
       )
     );
-    setSelectedContact(null);
-  };
-
-  const handleEditClick = (contact) => {
-    setSelectedContact(contact);
-    setIsEditOpen(true);
-  };
-
-  const handleNewClick = () => {
-    setIsNewOpen(true);
   };
 
   return (
@@ -175,7 +174,7 @@ function App() {
       </Paper>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={3000}
+        autoHideDuration={5000}
         onClose={() => setSnackbarOpen(false)}
       >
         <Alert onClose={() => setSnackbarOpen(false)} severity="success">
