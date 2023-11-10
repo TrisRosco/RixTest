@@ -4,7 +4,7 @@ import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import ContactEdit from "./components/ContactEdit";
-import { Container, Paper, Button, Snackbar } from "@mui/material";
+import { Container, Paper, Button, Snackbar, Alert } from "@mui/material";
 import {
   getContacts,
   addContact,
@@ -18,6 +18,8 @@ function App() {
   const [selectedContact, setSelectedContact] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isNewOpen, setIsNewOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -91,9 +93,14 @@ function App() {
         });
     } else {
       console.error("No contact selected for updating.");
+      setSnackbarMessage("Error updating contact");
+      setSnackbarOpen(true);
     }
     setIsEditOpen(false);
-    window.location.reload(); // reload the page to display the updated contact
+    setSelectedContact(null);
+    setSnackbarMessage("Contact updated successfully");
+    setSnackbarOpen(true);
+    // reload the page to display the updated contact
     // this is janky but it works
     // TODO: find a better way to update the contact list
   };
@@ -138,6 +145,15 @@ function App() {
           onEdit={handleEditClick}
         />
       </Paper>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={2000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <Alert onClose={() => setSnackbarOpen(false)} severity="success">
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }
