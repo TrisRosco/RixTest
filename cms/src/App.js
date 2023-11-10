@@ -85,24 +85,21 @@ function App() {
             )
           );
           // Close the edit form and reset the selected contact
-          setIsEditOpen(false);
-          setSelectedContact(null);
+          setSnackbarMessage("Contact updated successfully");
+          setSnackbarOpen(true);
         })
         .catch((error) => {
           console.error("Error updating contact:", error);
+          setSnackbarMessage("Error updating contact");
+          setSnackbarOpen(true);
         });
     } else {
       console.error("No contact selected for updating.");
-      setSnackbarMessage("Error updating contact");
+      setSnackbarMessage("No contact selected for updating");
       setSnackbarOpen(true);
     }
     setIsEditOpen(false);
     setSelectedContact(null);
-    setSnackbarMessage("Contact updated successfully");
-    setSnackbarOpen(true);
-    // reload the page to display the updated contact
-    // this is janky but it works
-    // TODO: find a better way to update the contact list
   };
 
   useEffect(() => {
