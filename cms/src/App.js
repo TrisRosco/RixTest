@@ -10,7 +10,8 @@ import { getContacts, addContact, deleteContact } from "./Models/queries";
 function App() {
   const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
-  const [openState, setOpenState] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -49,7 +50,8 @@ function App() {
   };
 
   const handleClose = () => {
-    setOpenState(false);
+    setIsEditOpen(false);
+    setSelectedContact(null);
   };
 
   const handleSave = () => {
@@ -63,8 +65,9 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contacts]);
 
-  const handleEdit = () => {
-    setOpenState(true);
+  const handleEditClick = (contact) => {
+    setSelectedContact(contact);
+    setIsEditOpen(true);
   };
 
   return (
@@ -75,14 +78,14 @@ function App() {
       </Paper> */}
       <SearchBar onSearch={handleSearch} />
       <ContactEdit
-        isOpen={openState}
+        isOpen={isEditOpen}
         onClose={handleClose}
         onSave={handleSave}
       />
       <ContactList
         contacts={filteredContacts}
         onDelete={(id) => deleteContact(id)}
-        onEdit={handleEdit}
+        onEdit={handleEditClick}
       />
       </Paper>
     </Container>
