@@ -5,7 +5,7 @@ import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import ContactEdit from "./components/ContactEdit";
 import { Container, Paper, Button } from "@mui/material";
-import { getContacts, addContact, deleteContact } from "./Models/queries";
+import { getContacts, addContact, deleteContact, updateContact } from "./Models/queries";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -54,11 +54,24 @@ function App() {
     setSelectedContact(null);
   };
 
-  const handleSave = () => {
-    // PLACEHODER, will sort later
-    console.log("Contact saved");
+  const handleSave = (updatedContactDetails) => {
+    // Assuming `updatedContactDetails` contains the updated info of the contact
+    updateContact(selectedContact.id, updatedContactDetails)
+      .then((updatedContact) => {
+        // Update the contacts state with the new details
+        setContacts(contacts.map(contact => 
+          contact.id === updatedContact.id ? updatedContact : contact
+        ));
+        // Close the edit form and reset the selected contact
+        setIsEditOpen(false);
+        setSelectedContact(null);
+      })
+      .catch(error => {
+        console.error("Error updating contact:", error);
+        // Handle error scenarios
+      });
   };
-
+  
   useEffect(() => {
     // necessary in order to display all contacts when search bar is empty
     handleSearch("");
@@ -73,9 +86,9 @@ function App() {
   return (
     <Container maxWidth="sm" className="App">
     <Paper sx={{padding: 2, marginTop: 4}} elevation={3}>
-      <Paper elevation={3} className="container">
+      {/* <Paper elevation={3} className="container">
         <ContactForm onSubmit={handleSubmit} />
-      </Paper>
+      </Paper> */}
       <SearchBar onSearch={handleSearch} />
       <Button variant="contained" >Add Contact</Button>
       <ContactEdit

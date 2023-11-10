@@ -150,7 +150,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={onSave}>Save</Button>
+        <Button onClick={() => onSave(contact)}>Save</Button>
       </DialogActions>
     </Dialog>
   );
