@@ -109,6 +109,7 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
           error={!!errors.email}
           helperText={errors.email}
           required
+          type="email"
           inputProps={{ maxLength: 100 }}
         />
         <TextField
@@ -121,7 +122,10 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
           error={!!errors.phone}
           helperText={errors.phone}
           required
-          inputProps={{ maxLength: 15 }}
+          type="tel"
+          inputProps={{
+            maxLength: 15,
+          }}
         />
         <TextField
           margin="dense"

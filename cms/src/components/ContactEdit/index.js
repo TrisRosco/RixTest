@@ -98,6 +98,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           error={!!errors.email}
           helperText={errors.email}
           required
+          type="email"
           inputProps={{ maxLength: 100 }}
         />
         <TextField
@@ -110,6 +111,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           error={!!errors.phone}
           helperText={errors.phone}
           required
+          type="tel"
           inputProps={{ maxLength: 15 }}
         />
         <TextField

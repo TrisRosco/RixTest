@@ -9,22 +9,16 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#a7b8c6',
+      main: '#1976d2',
     },
     secondary: {
-      main: '#e43143',
-    },
-    background: {
-      default: '#2D69B3',
+      main: '#9c27b0',
     },
     warning: {
       main: '#ed6c02',
     },
     error: {
       main: '#d32f2f',
-    },
-    text: {
-      primary: '#121113',
     },
   },
 });
