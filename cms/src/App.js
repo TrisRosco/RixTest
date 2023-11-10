@@ -116,6 +116,12 @@ function App() {
       setIsLoading(false); // Stop loading if no contact is selected
     }
     setIsEditOpen(false);
+    //TODO: This is jank 
+    setContacts((prevContacts) =>
+      prevContacts.map((contact) =>
+        contact.id === selectedContact.id ? updatedContactDetails : contact
+      )
+    );
     setSelectedContact(null);
   };
 
