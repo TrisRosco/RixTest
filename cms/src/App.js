@@ -4,7 +4,7 @@ import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import ContactEdit from "./components/ContactEdit";
-import { Container, Paper, Button } from "@mui/material";
+import { Container, Paper, Button, Snackbar } from "@mui/material";
 import {
   getContacts,
   addContact,
@@ -93,6 +93,9 @@ function App() {
       console.error("No contact selected for updating.");
     }
     setIsEditOpen(false);
+    window.location.reload(); // reload the page to display the updated contact
+    // this is janky but it works
+    // TODO: find a better way to update the contact list
   };
 
   useEffect(() => {
