@@ -35,11 +35,6 @@ function App() {
     fetchContacts();
   }, []);
 
-  const handleSubmit = (contact) => {
-    addContact(contact);
-    setContacts((prevContacts) => [...prevContacts, contact]); // update contacts usestate with new contact added
-  };
-
   const handleSearch = (searchTerm) => {
     if (searchTerm.trim() === "") {
       // If the search term is empty, set filtered contacts to all contacts usestate
@@ -69,13 +64,27 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    // necessary in order to display all contacts when search bar is empty
+    handleSearch("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contacts]);
+
   const handleClose = () => {
     setIsEditOpen(false);
     setIsNewOpen(false);
     setSelectedContact(null);
   };
 
-  const handleSave = async (updatedContactDetails) => {
+  const handleSubmit = (contact) => {
+    addContact(contact);
+    setContacts((prevContacts) => [...prevContacts, contact]); // update contacts usestate with new contact added
+    setIsNewOpen(false);
+    setSnackbarMessage("Contact added successfully");
+    setSnackbarOpen(true);
+  };
+
+  const handleUpdate = async (updatedContactDetails) => {
     setIsLoading(true); // Start loading
     if (selectedContact && selectedContact.id) {
       try {
@@ -110,12 +119,6 @@ function App() {
     setSelectedContact(null);
   };
 
-  useEffect(() => {
-    // necessary in order to display all contacts when search bar is empty
-    handleSearch("");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contacts]);
-
   const handleEditClick = (contact) => {
     setSelectedContact(contact);
     setIsEditOpen(true);
@@ -142,7 +145,7 @@ function App() {
         <ContactEdit
           isOpen={isEditOpen}
           onClose={handleClose}
-          onSave={handleSave}
+          onSave={handleUpdate}
           initialData={selectedContact} // pass the selected contact to the edit form
           isLoading={isLoading}
         />
