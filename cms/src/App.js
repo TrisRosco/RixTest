@@ -12,6 +12,7 @@ import {
   Alert,
   Divider,
   Stack,
+  Tooltip,
 } from "@mui/material";
 import {
   getContacts,
@@ -19,6 +20,7 @@ import {
   deleteContact,
   updateContact,
 } from "./Models/queries";
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -156,13 +158,15 @@ function App() {
           spacing={2}
         >
           <SearchBar onSearch={handleSearch} />
+          <Tooltip title="New Contact">
           <Button
             // This sx mess is just to center the button.
             variant="contained"
             onClick={handleNewClick}
           >
-            Add Contact
+            <LibraryAddIcon />
           </Button>
+          </Tooltip>
         </Stack>
         <Divider sx={{ marginTop: 1 }} />
         <ContactEdit
