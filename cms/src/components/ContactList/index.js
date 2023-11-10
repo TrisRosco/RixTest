@@ -11,9 +11,6 @@ import EditIcon from "@mui/icons-material/Edit"; // Import the edit icon
 
 const ContactList = ({ contacts, onDelete, onEdit }) => {
 
-  const handleDelete = (id) => () => {
-    onDelete(id);
-  };
 
   return (
     <List>
@@ -34,7 +31,7 @@ const ContactList = ({ contacts, onDelete, onEdit }) => {
                 <IconButton
                   edge="end"
                   aria-label="delete"
-                  onClick={handleDelete(contact.id)}
+                  onClick={() => onDelete(contact.id)}
                 >
                   <DeleteIcon />
                 </IconButton>
