@@ -151,13 +151,25 @@ function App() {
         />
         <ContactList
           contacts={filteredContacts}
-          onDelete={(id) => deleteContact(id)}
+          onDelete={(id) => {
+            deleteContact(id)
+              .then(() => {
+                setContacts(contacts.filter((contact) => contact.id !== id));
+                setSnackbarMessage("Contact deleted successfully");
+                setSnackbarOpen(true);
+              })
+              .catch((error) => {
+                console.error("Error deleting contact:", error);
+                setSnackbarMessage("Error deleting contact");
+                setSnackbarOpen(true);
+              });
+          }}
           onEdit={handleEditClick}
         />
       </Paper>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onClose={() => setSnackbarOpen(false)}
       >
         <Alert onClose={() => setSnackbarOpen(false)} severity="success">

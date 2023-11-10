@@ -10,6 +10,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit"; // Import the edit icon
 
 const ContactList = ({ contacts, onDelete, onEdit }) => {
+
+  const handleDelete = (id) => () => {
+    onDelete(id);
+  };
+
   return (
     <List>
       {contacts.map((contact) => (
@@ -29,7 +34,7 @@ const ContactList = ({ contacts, onDelete, onEdit }) => {
                 <IconButton
                   edge="end"
                   aria-label="delete"
-                  onClick={() => onDelete(contact.id)}
+                  onClick={handleDelete(contact.id)}
                 >
                   <DeleteIcon />
                 </IconButton>
