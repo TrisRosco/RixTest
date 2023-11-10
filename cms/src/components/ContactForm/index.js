@@ -15,6 +15,7 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
     phone: initialData.phone || "",
     address: initialData.address || "",
     postcode: initialData.postcode || "",
+    city: initialData.city || "",
   });
   const [errors, setErrors] = useState({}); // tracks errors for each field
 
