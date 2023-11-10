@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+} from "@mui/material";
 
-const ContactForm = ({ onSubmit, initialData = {} }) => {
+const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
   const [contact, setContact] = useState({
     name: initialData.name || "",
     email: initialData.email || "",
@@ -64,70 +70,100 @@ const ContactForm = ({ onSubmit, initialData = {} }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Name"
-        name="name"
-        value={contact.name}
-        onChange={handleChange}
-        error={!!errors.name}
-        helperText={errors.name}
-        required
-        inputProps={{ maxLength: 50 }}
-      />
-
-      <TextField
-        label="Email"
-        name="email"
-        value={contact.email}
-        onChange={handleChange}
-        error={!!errors.email}
-        helperText={errors.email}
-        required
-        inputProps={{ maxLength: 255 }}
-      />
-      <TextField
-        label="Phone Number"
-        name="phone"
-        value={contact.phone}
-        onChange={handleChange}
-        error={!!errors.phone}
-        helperText={errors.phone}
-        required
-        inputProps={{ maxLength: 15 }}
-      />
-      <TextField
-        label="Address"
-        name="address"
-        value={contact.address}
-        onChange={handleChange}
-        inputProps={{ maxLength: 255 }}
-      />
-      <TextField
-        label="Postcode"
-        name="postcode"
-        value={contact.postcode}
-        onChange={handleChange}
-        error={!!errors.postcode}
-        helperText={errors.postcode}
-        required
-        inputProps={{ maxLength: 8 }}
-        onBlur={(e) => {
-          // Format the postcode
-          const formattedPostcode = formatPostcode(e.target.value);
-          setContact({ ...contact, postcode: formattedPostcode });
-        }}
-      />
-
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        style={{ marginTop: "16px" }}
-      >
-        Save Contact
-      </Button>
-    </form>
+    <Dialog open={isOpen} onClose={onClose}>
+      <DialogTitle>New Contact</DialogTitle>
+      <DialogContent>
+        <TextField
+          margin="dense"
+          fullWidth
+          label="Name"
+          name="name"
+          value={contact.name}
+          onChange={handleChange}
+          error={!!errors.name}
+          helperText={errors.name}
+          required
+          inputProps={{ maxLength: 50 }}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          label="Email"
+          name="email"
+          value={contact.email}
+          onChange={handleChange}
+          error={!!errors.email}
+          helperText={errors.email}
+          required
+          inputProps={{ maxLength: 100 }}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          label="Phone Number"
+          name="phone"
+          value={contact.phone}
+          onChange={handleChange}
+          error={!!errors.phone}
+          helperText={errors.phone}
+          required
+          inputProps={{ maxLength: 15 }}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          label="City"
+          name="city"
+          value={contact.city}
+          onChange={handleChange}
+          inputProps={{ maxLength: 50 }}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          label="Address"
+          name="address"
+          value={contact.address}
+          onChange={handleChange}
+          inputProps={{ maxLength: 255 }}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          label="Postcode"
+          name="postcode"
+          value={contact.postcode}
+          onChange={handleChange}
+          error={!!errors.postcode}
+          helperText={errors.postcode}
+          required
+          inputProps={{ maxLength: 8 }}
+          onBlur={(e) => {
+            // Format the postcode
+            const formattedPostcode = formatPostcode(e.target.value);
+            setContact({ ...contact, postcode: formattedPostcode });
+          }}
+        />
+        <Button
+          variant="outlined"
+          color="primary"
+          type="submit"
+          style={{ marginTop: "16px" }}
+          onClick={onClose}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{ marginTop: "16px" }}
+          onClick={handleSubmit}
+        >
+          Save Contact
+        </Button>
+      </DialogContent>
+    </Dialog>
   );
 };
 

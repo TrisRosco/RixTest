@@ -17,6 +17,7 @@ function App() {
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isNewOpen, setIsNewOpen] = useState(false);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -94,14 +95,19 @@ function App() {
     setIsEditOpen(true);
   };
 
+  const handleNewClick = () => {
+    setIsNewOpen(true);
+  }
+
+
   return (
     <Container maxWidth="sm" className="App">
       <Paper sx={{ padding: 2, marginTop: 4 }} elevation={3}>
-        {/* <Paper elevation={3} className="container">
-        <ContactForm onSubmit={handleSubmit} />
-      </Paper> */}
+
+        <ContactForm isOpen={isNewOpen} onSubmit={handleSubmit} />
+
         <SearchBar onSearch={handleSearch} />
-        <Button variant="contained">Add Contact</Button>
+        <Button variant="contained" onClick={handleNewClick}>Add Contact</Button>
         <ContactEdit
           isOpen={isEditOpen}
           onClose={handleClose}
