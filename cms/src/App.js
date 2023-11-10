@@ -4,7 +4,15 @@ import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
 import ContactList from "./components/ContactList";
 import ContactEdit from "./components/ContactEdit";
-import { Container, Paper, Button, Snackbar, Alert } from "@mui/material";
+import {
+  Container,
+  Paper,
+  Button,
+  Snackbar,
+  Alert,
+  Divider,
+  Stack,
+} from "@mui/material";
 import {
   getContacts,
   addContact,
@@ -142,11 +150,21 @@ function App() {
           onClose={handleClose}
           isLoading={isLoading}
         />
-
-        <SearchBar onSearch={handleSearch} />
-        <Button variant="contained" onClick={handleNewClick}>
-          Add Contact
-        </Button>
+        <Stack
+          direction="row"
+          divider={<Divider orientation="vertical" flexItem />}
+          spacing={2}
+        >
+          <SearchBar onSearch={handleSearch} />
+          <Button
+            // This sx mess is just to center the button.
+            variant="contained"
+            onClick={handleNewClick}
+          >
+            Add Contact
+          </Button>
+        </Stack>
+        <Divider sx={{ marginTop: 1 }} />
         <ContactEdit
           isOpen={isEditOpen}
           onClose={handleClose}

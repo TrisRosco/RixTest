@@ -74,7 +74,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Edit Contact</DialogTitle>
+      <DialogTitle>Updating Contact</DialogTitle>
       <DialogContent>
         <TextField
           margin="dense"
