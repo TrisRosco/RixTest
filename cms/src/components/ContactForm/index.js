@@ -85,7 +85,7 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>New Contact</DialogTitle>
+      <DialogTitle>Add Contact</DialogTitle>
       <DialogContent>
         <TextField
           margin="dense"

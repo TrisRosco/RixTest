@@ -7,18 +7,32 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    type: 'light',
     primary: {
-      main: '#1976d2',
+      main: '#01579b',
     },
     secondary: {
-      main: '#9c27b0',
-    },
-    warning: {
-      main: '#ed6c02',
+      main: '#f50057',
     },
     error: {
-      main: '#d32f2f',
+      main: '#d50000',
+    },
+    success: {
+      main: '#2e7d32',
+    },
+  },
+  typography: {
+    fontFamily: 'Montserrat',
+  },
+  props: {
+    MuiList: {
+      dense: true,
+    },
+    MuiMenuItem: {
+      dense: true,
+    },
+    MuiTable: {
+      size: 'small',
     },
   },
 });
