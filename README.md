@@ -1,13 +1,16 @@
 # RixTest
 CMS (Contact Management System)
 
+This is a simple contact management system that allows you to add, edit, delete, and search contacts. 
+
 Tech stack:
 React
 MUI
 Express
-Supabase 
+Supabase
 
-Instructions: -Clone Repo
+Instructions: 
+-Clone Repo
 -cd cms
 -npm i
 -npm start
