@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 
 const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
+
+  // set initial state of contact to the initial data passed in or empty string
   const [contact, setContact] = useState({
     name: initialData ? initialData.name : "",
     email: initialData ? initialData.email : "",
@@ -19,6 +21,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
   });
   const [errors, setErrors] = useState({}); // tracks errors for each field
 
+  // useEffect to update contact state when initial data changes
   useEffect(() => {
     if (initialData) {
       setContact({
@@ -32,6 +35,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
     }
   }, [initialData]);
 
+  // validate inputs on a case by case basis
   const validateInput = (name, value) => {
     switch (name) {
       case "name":
@@ -56,8 +60,8 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
     }
   };
 
+  // format postcode to uppercase and add space before last 3 characters if not already there
   const formatPostcode = (value) => {
-    // format postcode to uppercase and add space before last 3 characters if not already there
     const formatted = value.toUpperCase();
     if (formatted.length > 3 && formatted[formatted.length - 4] !== " ") {
       return formatted.slice(0, -3) + " " + formatted.slice(-3);
@@ -65,6 +69,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
     return formatted;
   };
 
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     const error = validateInput(name, value); // validate input

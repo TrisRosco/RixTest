@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useState, useEffect } from "react";
 import ContactForm from "./components/ContactForm";
 import SearchBar from "./components/SearchBar";
@@ -12,7 +11,6 @@ import {
   Alert,
   Divider,
   Stack,
-  Tooltip,
 } from "@mui/material";
 import {
   getContacts,
@@ -20,7 +18,6 @@ import {
   deleteContact,
   updateContact,
 } from "./Models/queries";
-import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -32,6 +29,7 @@ function App() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // Fetch contacts on mount and set contacts usestate
   useEffect(() => {
     const fetchContacts = async () => {
       try {
@@ -41,10 +39,10 @@ function App() {
         console.error("Failed to fetch contacts:", error);
       }
     };
-
     fetchContacts();
   }, []);
 
+  // Handler for the search bar
   const handleSearch = (searchTerm) => {
     if (searchTerm.trim() === "") {
       // If the search term is empty, set filtered contacts to all contacts usestate
@@ -74,19 +72,19 @@ function App() {
     }
   };
 
+    // Necessary in order to display all contacts when search bar is empty
   useEffect(() => {
-    // necessary in order to display all contacts when search bar is empty
     handleSearch("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contacts]);
 
+  const handleNewClick = () => {
+    setIsNewOpen(true);
+  };
+
   const handleEditClick = (contact) => {
     setSelectedContact(contact);
     setIsEditOpen(true);
-  };
-
-  const handleNewClick = () => {
-    setIsNewOpen(true);
   };
 
   const handleClose = () => {
@@ -95,6 +93,7 @@ function App() {
     setSelectedContact(null);
   };
 
+  // Function to add a new contact
   const handleSubmit = (contact) => {
     addContact(contact);
     setContacts((prevContacts) => [...prevContacts, contact]); // update contacts usestate with new contact added
@@ -103,6 +102,7 @@ function App() {
     setSnackbarOpen(true);
   };
 
+  // Function to update an existing contact
   const handleUpdate = async (updatedContactDetails) => {
     setIsLoading(true); // Start loading
     if (selectedContact && selectedContact.id) {
@@ -154,19 +154,19 @@ function App() {
         />
         <Stack
           direction="row"
-          divider={<Divider orientation="vertical" flexItem />}
+
           spacing={2}
         >
           <SearchBar onSearch={handleSearch} />
-          <Tooltip title="New Contact">
           <Button
-            // This sx mess is just to center the button.
             variant="contained"
             onClick={handleNewClick}
+            // justify and align center
+            size="small"
+            sx={{ minWidth: "130px", maxHeight: "40px", transform: "translateY(15px)" }}
           >
-            <LibraryAddIcon />
+          Add Contact
           </Button>
-          </Tooltip>
         </Stack>
         <Divider sx={{ marginTop: 1 }} />
         <ContactEdit
@@ -174,7 +174,7 @@ function App() {
           onClose={handleClose}
           onSave={handleUpdate}
           initialData={selectedContact} // pass the selected contact to the edit form
-          isLoading={isLoading}
+          isLoading={isLoading} // Loading state for the planned loading indicator
         />
         <ContactList
           contacts={filteredContacts}
