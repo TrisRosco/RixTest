@@ -110,7 +110,7 @@ const ContactForm = ({ onSubmit, isOpen, onClose, initialData = {} }) => {
           helperText={errors.email}
           required
           type="email"
-          inputProps={{ maxLength: 100 }}
+          inputProps={{ maxLength: 50 }}
         />
         <TextField
           margin="dense"

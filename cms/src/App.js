@@ -123,7 +123,6 @@ function App() {
       if (!updatedContact || !updatedContact.id) {
         throw new Error("The updated contact is null or missing an id.");
       }
-      console.log("Updated Contact:", updatedContact); // Debugging log
       // Update the contacts state with the new details
       setContacts(
         contacts.map((contact) =>

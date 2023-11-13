@@ -104,7 +104,7 @@ const ContactEdit = ({ isOpen, onClose, onSave, initialData = {} }) => {
           helperText={errors.email}
           required
           type="email"
-          inputProps={{ maxLength: 100 }}
+          inputProps={{ maxLength: 50 }}
         />
         <TextField
           margin="dense"

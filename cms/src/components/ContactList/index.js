@@ -38,7 +38,9 @@ const ContactList = ({ contacts, onDelete, onEdit }) => {
             <ListItemText
               primary={contact.name}
               secondary={
-                <>
+                <span
+                  style={{ wordBreak: "break-all", overflowWrap: "break-word" }}
+                >
                   {"Email: " + contact.email}
                   <br />
                   {"Phone: " + contact.phone}
@@ -46,7 +48,7 @@ const ContactList = ({ contacts, onDelete, onEdit }) => {
                   {"Address: " + contact.address + ", " + contact.city}
                   <br />
                   {"Postcode: " + contact.postcode}
-                </>
+                </span>
               }
             />
           </ListItem>
