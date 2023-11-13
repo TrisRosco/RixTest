@@ -36,7 +36,6 @@ function App() {
         const data = await getContacts();
         setContacts(data);
       } catch (error) {
-        console.error("Failed to fetch contacts:", error);
       }
     };
     fetchContacts();
@@ -107,7 +106,6 @@ function App() {
     setIsLoading(true); // Start loading
 
     if (!selectedContact || !selectedContact.id) {
-      console.error("No contact selected for updating.");
       setSnackbarMessage("No contact selected for updating");
       setIsLoading(false); // Stop loading if no contact is selected
       return; // Early return to avoid further execution
@@ -131,7 +129,6 @@ function App() {
       );
       setSnackbarMessage("Contact updated successfully");
     } catch (error) {
-      console.error("Error updating contact:", error);
       setSnackbarMessage("Error updating contact");
     } finally {
       setIsLoading(false); // Stop loading whether success or error
@@ -183,7 +180,6 @@ function App() {
                 setSnackbarOpen(true);
               })
               .catch((error) => {
-                console.error("Error deleting contact:", error);
                 setSnackbarMessage("Error deleting contact");
                 setSnackbarOpen(true);
               });
