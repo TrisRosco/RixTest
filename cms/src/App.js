@@ -72,7 +72,7 @@ function App() {
     }
   };
 
-    // Necessary in order to display all contacts when search bar is empty
+  // Necessary in order to display all contacts when search bar is empty
   useEffect(() => {
     handleSearch("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,42 +105,40 @@ function App() {
   // Function to update an existing contact
   const handleUpdate = async (updatedContactDetails) => {
     setIsLoading(true); // Start loading
-    if (selectedContact && selectedContact.id) {
-      try {
-        // Await the async updateContact call
-        const updatedContact = await updateContact(
-          selectedContact.id,
-          updatedContactDetails
-        );
-        // Update the contacts state with the new details
-        setContacts(
-          contacts.map((contact) =>
-            contact.id === updatedContact.id ? updatedContact : contact
-          )
-        );
-        // Set success message and stop loading
-        setSnackbarMessage("Contact updated successfully");
-        setSnackbarOpen(true);
-        setIsLoading(false); // Stop loading on success
-      } catch (error) {
-        console.error("Error updating contact:", error);
-        setSnackbarMessage("Error updating contact");
-        setSnackbarOpen(true);
-        setIsLoading(false); // Stop loading on error
-      }
-    } else {
+
+    if (!selectedContact || !selectedContact.id) {
       console.error("No contact selected for updating.");
       setSnackbarMessage("No contact selected for updating");
-      setSnackbarOpen(true);
       setIsLoading(false); // Stop loading if no contact is selected
+      return; // Early return to avoid further execution
     }
-    setIsEditOpen(false);
-    //TODO: This is jank
-    setContacts((prevContacts) =>
-      prevContacts.map((contact) =>
-        contact.id === selectedContact.id ? updatedContactDetails : contact
-      )
-    );
+
+    try {
+      // Await the async updateContact call
+      const updatedContact = await updateContact(
+        selectedContact.id,
+        updatedContactDetails
+      );
+
+      if (!updatedContact || !updatedContact.id) {
+        throw new Error("The updated contact is null or missing an id.");
+      }
+      console.log("Updated Contact:", updatedContact); // Debugging log
+      // Update the contacts state with the new details
+      setContacts(
+        contacts.map((contact) =>
+          contact.id === updatedContact.id ? updatedContact : contact
+        )
+      );
+      setSnackbarMessage("Contact updated successfully");
+    } catch (error) {
+      console.error("Error updating contact:", error);
+      setSnackbarMessage("Error updating contact");
+    } finally {
+      setIsLoading(false); // Stop loading whether success or error
+      setSnackbarOpen(true);
+      setIsEditOpen(false);
+    }
   };
 
   return (
@@ -152,20 +150,20 @@ function App() {
           onClose={handleClose}
           isLoading={isLoading}
         />
-        <Stack
-          direction="row"
-
-          spacing={2}
-        >
+        <Stack direction="row" spacing={2}>
           <SearchBar onSearch={handleSearch} />
           <Button
             variant="contained"
             onClick={handleNewClick}
             // justify and align center
             size="small"
-            sx={{ minWidth: "130px", maxHeight: "40px", transform: "translateY(15px)" }}
+            sx={{
+              minWidth: "130px",
+              maxHeight: "40px",
+              transform: "translateY(15px)",
+            }}
           >
-          Add Contact
+            Add Contact
           </Button>
         </Stack>
         <Divider sx={{ marginTop: 1 }} />
