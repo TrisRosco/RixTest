@@ -17,7 +17,7 @@ import {
   addContact,
   deleteContact,
   updateContact,
-} from "./Models/queries";
+} from "./Backend/queries";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -35,8 +35,7 @@ function App() {
       try {
         const data = await getContacts();
         setContacts(data);
-      } catch (error) {
-      }
+      } catch (error) {}
     };
     fetchContacts();
   }, []);
